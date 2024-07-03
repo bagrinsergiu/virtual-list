@@ -1,7 +1,6 @@
 import _slicedToArray from "@babel/runtime/helpers/esm/slicedToArray";
 import * as React from 'react';
 import { useRef, useEffect } from 'react';
-import findDOMNode from "rc-util/es/Dom/findDOMNode";
 import raf from "rc-util/es/raf";
 import CacheMap from "../utils/CacheMap";
 export default function useHeights(getKey, onItemAdd, onItemRemove) {
@@ -21,10 +20,9 @@ export default function useHeights(getKey, onItemAdd, onItemRemove) {
     var doCollect = function doCollect() {
       instanceRef.current.forEach(function (element, key) {
         if (element && element.offsetParent) {
-          var htmlElement = findDOMNode(element);
-          var offsetHeight = htmlElement.offsetHeight;
+          var offsetHeight = element.offsetHeight;
           if (heightsRef.current.get(key) !== offsetHeight) {
-            heightsRef.current.set(key, htmlElement.offsetHeight);
+            heightsRef.current.set(key, offsetHeight);
           }
         }
       });
